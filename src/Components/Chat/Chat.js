@@ -11,18 +11,20 @@ class Chat extends Component {
     this.state = {
       // words: ["cat", "dog", "sun", "cup", "pie", "bug", "snake", "tree"],
       messages: [],
-      message: ""
+      message: "",
+      correct: ''
     };
     this.socket = io.connect("http://localhost:4444");
   }
 
   componentDidMount() {
-    this.socket.on("chat", message => {
-      message.key = JSON.stringify(message);
-      this.setState(prevState => {
-        let messages = prevState.messages;
-        messages.push(message);
-      });
+    this.socket.on("chat", msg => {
+      let messages = this.state.messages
+      messages.push(msg)
+      this.setState({
+        messages: messages
+      })
+      
     });
   }
 
@@ -37,7 +39,8 @@ class Chat extends Component {
   };
 
   handleEnter = e => {
-    // e.preventDefault();
+    
+
     if (e.key === "Enter") {
       this.socket.emit("chat", {
         name: this.props.user.username,
@@ -47,27 +50,32 @@ class Chat extends Component {
       this.setState({
         message: ""
       });
+
+      let words = this.props.words;
+      for (let i = 0; i < words.length; i++) {
+        if (this.state.message === this.props.word) {
+          this.setState({
+            correct: 'Correct!'
+          })
+        }
+      }
+  
     }
   };
 
-  // handleGuess = () => {
-
-  //   if(this.state.message === this.state.word) {
-  //     console.log('you guessed it')
-  //   }
-  // }
+ 
+   
+  
 
   render() {
-    let words = this.props.words;
-    for (let i = 0; i < words.length; i++) {
-      if (this.state.message === this.props.words[i]) {
-        console.log("correct");
-      }
-    }
-
+    
+// console.log(this.state.messages)
     return (
       <div className="chat">
         <Messages messages={this.state.messages} />
+        <p>{this.state.correct}</p>
+
+        
 
         <textarea
           value={this.state.message}
@@ -77,6 +85,9 @@ class Chat extends Component {
           placeholder="Type a message..."
           type="text"
         />
+
+        
+        
       </div>
     );
   }

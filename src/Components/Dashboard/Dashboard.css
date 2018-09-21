@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 100vw
 }
 
 .logo {
@@ -62,4 +63,9 @@ border-radius: 5px;
 font-size: 14px;
 font-family: 'Montserrat';
 color: white;
+}
+
+.worddisplay {
+  width: 200px;
+  font-family: 'Montserrat'
 }

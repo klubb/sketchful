@@ -1,12 +1,14 @@
 .chat {
   background-color: #f3f3f3;
   width: 28vw;
-  height: 89.7vh;
+  height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   border-left: 1px solid rgba(128, 128, 128, 0.212);
-  /* border-bottom: 1px solid rgba(128, 128, 128, 0.212); */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  
 }
 
 .message {
@@ -34,8 +36,58 @@
   padding: 10px;
   height: 5vh;
   
+  
 }
 
-.typemessage {
-    height: 8.1vh;
+
+
+.messagebox {
+  background-color: white;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
+
+li {
+  /* border: 1px solid black; */
+  list-style-type: none;
+  margin: 2px 0;
+  padding: 10px;
+  
+  
+  
+}
+.him {
+  background-color: lightskyblue;
+  float: left;
+  border-radius: 0 10px 10px 0;
+  clear: both;
+  color: white;
+  width: 220px;
+  
+ 
+  
+}
+.me {
+  float: right;
+  border-radius: 10px 0 0 10px;
+  clear: both;
+}
+.him.start {
+  border-top-left-radius: 10px;  
+  
+  
+}
+.him.end {
+  border-bottom-left-radius: 10px;  
+}
+.me.start {
+  border-top-right-radius: 10px;  
+}
+.me.end {
+  border-bottom-right-radius: 10px;  
+}
+
+

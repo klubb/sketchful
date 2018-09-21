@@ -33,11 +33,6 @@ app.use((req,res,next) => {
 })
 
 
-
-
-
-
-
 io.on('connection', socket => {
     console.log('a user connected')
     socket.on('disconnect', function(){
@@ -65,17 +60,6 @@ io.on('connection', socket => {
          });
      });
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,19 +1,22 @@
 .tool-container {
-    background: black;
-    color: white;
-    padding: 5px 10px;
-    font-size: 20px;
-    cursor: pointer;
-    margin-top: 5px;
-    border-radius: 3px;
-    text-align: center;
-    width: 200px;
+  cursor: pointer;
+  margin: 15px;
+  background: #ffe070;
+  padding: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: "Montserrat";
+  width: 100px;
+  
   }
+
   .tool-container:hover {
-    background: rgb(50, 50, 50);
+   background: lightgray
   }
   .tool-container--selected {
-    background: rgb(130, 130, 130);
+    background: #1F2833;
+    color: white;
   }
   
   .brush-size-indicator {
@@ -25,16 +28,17 @@
   
   .toolbox {
     position: absolute; 
-    left: 670px;
-    top: 20px;
+    left: 70px;
+    top: 340px;
     /* display: none; */
   }
 
  
   
-  .display {
+  #display {
     border: 1px solid rgb(230, 230, 230);
-    margin: 50px;
+    margin: 50px 50px 0px 50px;
+
   }
   
   .pen-size-label {
@@ -88,4 +92,44 @@
   }
   .join-button:hover {
     background: rgb(230, 230, 230);
+  }
+
+
+  .draw-container {
+    display: flex;
+    justify-content: center;
+    
+
+  }
+
+  /* .chromepicker {
+    height: 400px;
+    width: 100px;
+  } */
+
+  .menubtn {
+    cursor: pointer;
+    height: 3vh;
+    position: absolute;
+    top: 78vh;
+    right: 63.9vw;
+
+  }
+
+  .img {
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .clearbtn {
+  cursor: pointer;
+  margin: 15px;
+  background: #ffe070;
+  padding: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: "Montserrat";
+  width: 100px;
   }

@@ -36,7 +36,30 @@
 
 .main-container {
     display: flex;
-    height: 90vh;
-    width: 100vw;
+    height: 87.7vh;
+    
     justify-content: space-between;
+    
+    
+}
+
+h5 {
+  font-family: 'Montserrat';
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.randombtn {
+  cursor: pointer;
+width: 150px;
+height: 30px;
+
+
+background: #1F2833;
+
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+font-size: 14px;
+font-family: 'Montserrat';
+color: white;
 }

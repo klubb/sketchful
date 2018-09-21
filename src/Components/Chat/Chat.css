@@ -1,21 +1,41 @@
 .chat {
-    background-color: #F3F3F3;
-    width: 28vw;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-left: 1px solid rgba(128, 128, 128, 0.212);
-    border-bottom: 1px solid rgba(128, 128, 128, 0.212);
-
+  background-color: #f3f3f3;
+  width: 28vw;
+  height: 89.7vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-left: 1px solid rgba(128, 128, 128, 0.212);
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.212); */
 }
 
-.message { 
-    background-color: white;
+.message {
+  /* background-color: white;
     height: 6vh;
     width: 28vw;
-    /* border-left: 1px solid rgba(128, 128, 128, 0.212); */
+    border-left: 1px solid rgba(128, 128, 128, 0.212);
     border-bottom: 1px solid rgba(128, 128, 128, 0.212);
     border-top: 1px solid rgba(128, 128, 128, 0.212);
-    font-size: 20px;
+    font-size: 20px; */
+
+  background-color: white;
+  border: 0;
+
+  border-bottom: solid 1px black;
+  width: 20%;
+  padding-bottom: 4px;
+  color: black !important;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  /* margin-bottom: 15px; */
+  margin-right: 20px;
+  font-size: 20px;
+  width: 26.55vw;
+  padding: 10px;
+  height: 5vh;
+  
+}
+
+.typemessage {
+    height: 8.1vh;
 }

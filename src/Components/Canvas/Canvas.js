@@ -3,6 +3,7 @@ import { ChromePicker } from "react-color";
 import Tool from "../Tool/Tool";
 import io from "socket.io-client";
 import './Canvas.css'
+import menu from './menu.png'
 
 const serverAddress = "http://localhost:4444";
 
@@ -12,6 +13,7 @@ class Canvas extends Component {
     this.display = React.createRef();
     this.socket = null;
     this.state = {
+      menuPressed: false,
       brushColor: { r: 0, g: 0, b: 0, a: 255 },
       brushSize: 3,
       toolId: "pen",
@@ -121,47 +123,50 @@ class Canvas extends Component {
     this.setState({ brushSize: e.target.value });
   }
 
+  handleMenu = () => {
+    console.log(this.state.menuPressed)
+    this.setState({
+      
+      menuPressed: !this.state.menuPressed
+    })
+  }
+
+  handleClear = () => {
+    var s = document.getElementById ("display");
+    var w = s.width;
+    s.width = 10;
+    s.width = w;
+    
+  }
+
   render() {
-    return this.state.loaded ? (
+    return  (
       <div>
         <canvas
-          className="display"
+
+          id="display"
           width="900"
           height="480"
           ref={this.display}
           onMouseMove={this.handleDisplayMouseMove.bind(this)}
           onMouseDown={this.handleDisplayMouseDown.bind(this)}
           onMouseUp={this.handleDisplayMouseUp.bind(this)}
+          
         />
+        <div className="img">
+        <img onClick={this.handleMenu} className='menubtn' src={menu} alt=""/>
+        </div>
+
         <div className="toolbox">
+
+          {this.state.menuPressed ? 
           <ChromePicker
+            className='chromepicker'
             color={this.state.brushColor}
             onChangeComplete={this.handleColorChange.bind(this)}
           />
-          <Tool
+          : null}
           
-            name="Eraser"
-            currentTool={this.state.toolId}
-            toolId="eraser"
-            onSelect={this.handleToolClick.bind(this)}
-          />
-          <Tool
-          
-            name="Pen"
-            currentTool={this.state.toolId}
-            toolId="pen"
-            onSelect={this.handleToolClick.bind(this)}
-          />
-          <code className="brush-size-label">
-            Size ({String(this.state.brushSize)})
-          </code>{" "}
-          <input
-            onChange={this.handleBrushResize.bind(this)}
-            value={this.state.brushSize}
-            type="range"
-            min="1"
-            max="50"
-          />
           <span
             className="brush-size-indicator"
             style={{
@@ -169,40 +174,33 @@ class Canvas extends Component {
               height: this.state.brushSize + "px",
               background: this.state.brushColor
             }}
-          />
+          /> 
+          
+
+
         </div>
-        {/* {this.state.cursors.map(cursor => (
-          <div
-            key={cursor.key}
-            className="cursor"
-            style={{ left: cursor.x + 8 + "px", top: cursor.y + 8 + "px" }}
-          >
-            <div
-              style={{
-                borderRadius: "50px",
-                position: "relative",
-                background: "silver",
-                width: "2px",
-                height: "2px"
-              }}
-            />{" "}
-            {cursor.name}
-          </div>
-        ))} */}
-      </div>
-    ) : (
-      <div className="join-container">
-        <input
-          type="text"
-          value={this.state.name}
-        //   onChange={this.handleNameInput.bind(this)}
-          className="join-input"
-          placeholder="Enter a name to use ..."
+            <div className='draw-container'> 
+        <Tool
+          className='tool'
+          name="Eraser"
+          currentTool={this.state.toolId}
+          toolId="eraser"
+          onSelect={this.handleToolClick.bind(this)}
         />
-        <br />
+        <Tool
+          className='tool'
+          name="Pen"
+          currentTool={this.state.toolId}
+          toolId="pen"
+          onSelect={this.handleToolClick.bind(this)}
+        />
+
+        <button onClick={this.handleClear} className='clearbtn'>Clear</button>
+        </div>
+        
        
       </div>
-    );
+    )
   }
 }
 export default Canvas;

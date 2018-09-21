@@ -4,8 +4,9 @@ const axios = require('axios')
 const massive = require('massive')
 const app = express()
 const session = require('express-session')
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+
 
 
 app.use(express.json())
@@ -38,6 +39,16 @@ app.use((req,res,next) => {
 
 
 io.on('connection', socket => {
+    console.log('a user connected')
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+      })
+
+      socket.on('chat', data => {
+          console.log(data)
+          io.emit('chat', data)
+      })
+      
     socket.on('cursor', data => {
         io.emit('cursor', {
            lineWidth: data.lineWidth,
@@ -110,6 +121,7 @@ app.get('/auth/callback', async (req, res) => {
   })
   
 
+  
 
 
 
@@ -121,7 +133,6 @@ app.get('/auth/callback', async (req, res) => {
 
 
 
-
-http.listen(SERVER_PORT, () => {
+server.listen(SERVER_PORT, () => {
     console.log(`listening on port ${SERVER_PORT}`)
 })

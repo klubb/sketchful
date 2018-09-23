@@ -19,13 +19,13 @@ class Login extends Component {
       <div className="background">
         <div className="container">
           <div className="side">
-            <img className="art" src={pencil1} alt="" />
+            <img className="art animated bounceIn faster" src={pencil1} alt="" />
           </div>
-          <div className="info">
+          <div className="info animated bounceInDown">
             <h1>Sketchful</h1>
 
             <h3>Draw and Chat with Friends</h3>
-            <button className='login' onClick={this.login}>Get Started</button>
+            <button className='login fadeIn delay-1s' onClick={this.login}>Get Started</button>
           </div>
         </div>
       </div>

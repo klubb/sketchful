@@ -27,7 +27,7 @@ display: flex;
 justify-content: center;
 flex-direction: column;
 align-items: center;
-margin-left: 120px;
+margin-left: 115px;
 /* margin-bottom: px; */
 
 }
@@ -76,4 +76,10 @@ h1 {
 h3 {
     font-size: 24px;
     font-family: 'Montserrat'
+}
+
+@media (min-width: 1920px) {
+.info {
+    margin-left: 190px;
+}
 }

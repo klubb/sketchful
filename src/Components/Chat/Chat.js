@@ -12,17 +12,21 @@ class Chat extends Component {
       // words: ["cat", "dog", "sun", "cup", "pie", "bug", "snake", "tree"],
       messages: [],
       message: "",
-      correct: ''
+      correct: '',
+      typing: false,
+      timeout: undefined,
+      
     };
     this.socket = io.connect("http://localhost:4444");
   }
 
+  
   componentDidMount() {
     this.socket.on("chat", msg => {
       let messages = this.state.messages
       messages.push(msg)
       this.setState({
-        messages: messages
+        messages: messages 
       })
       
     });
@@ -40,8 +44,8 @@ class Chat extends Component {
 
   handleEnter = e => {
     
-
-    if (e.key === "Enter") {
+    if(this.state.message) {
+    if (e.key === "Enter" ) {
       this.socket.emit("chat", {
         name: this.props.user.username,
         message: this.state.message,
@@ -59,20 +63,22 @@ class Chat extends Component {
           })
         }
       }
-  
+      
     }
+  }
   };
 
- 
+
    
   
 
   render() {
-    
-// console.log(this.state.messages)
+
+
     return (
+      
       <div className="chat">
-        <Messages messages={this.state.messages} />
+        <Messages  messages={this.state.messages} user={this.props.user.username}/>
         <p>{this.state.correct}</p>
 
         
@@ -82,13 +88,14 @@ class Chat extends Component {
           onKeyPress={this.handleEnter}
           onChange={this.updateMessage}
           className="message"
-          placeholder="Type a message..."
+          placeholder="Type a message... "
           type="text"
         />
 
         
         
       </div>
+      
     );
   }
 }

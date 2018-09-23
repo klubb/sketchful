@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { ChromePicker } from "react-color";
 import Tool from "../Tool/Tool";
 import io from "socket.io-client";
-import './Canvas.css'
-import menu from './menu.png'
+import "./Canvas.css";
+import menu from "./menu.png";
 
 const serverAddress = "http://localhost:4444";
 
@@ -93,8 +93,8 @@ class Canvas extends Component {
           });
           break;
 
-          default: 
-            return null
+        default:
+          return null;
       }
     }
     this.setState({
@@ -124,26 +124,27 @@ class Canvas extends Component {
   }
 
   handleMenu = () => {
-    console.log(this.state.menuPressed)
+    console.log(this.state.menuPressed);
     this.setState({
-      
       menuPressed: !this.state.menuPressed
-    })
-  }
+    });
+  };
 
   handleClear = () => {
-    var s = document.getElementById ("display");
+    var s = document.getElementById("display");
     var w = s.width;
     s.width = 10;
     s.width = w;
-    
-  }
+  };
 
   render() {
-    return  (
+    
+    return (
       <div>
         <canvas
+          
 
+          
           id="display"
           width="900"
           height="480"
@@ -153,20 +154,22 @@ class Canvas extends Component {
           onMouseUp={this.handleDisplayMouseUp.bind(this)}
           
         />
+        
         <div className="img">
-        <img onClick={this.handleMenu} className='menubtn' src={menu} alt=""/>
+          {/* <img onClick={this.handleMenu} className='menubtn' src={menu} 
+          alt=""/> */}
+          <i onClick={this.handleMenu} className="fas fa-bars menubtn"></i>
         </div>
 
         <div className="toolbox">
+          {this.state.menuPressed ? (
+            <ChromePicker
+              className="chromepicker"
+              color={this.state.brushColor}
+              onChangeComplete={this.handleColorChange.bind(this)}
+            />
+          ) : null}
 
-          {this.state.menuPressed ? 
-          <ChromePicker
-            className='chromepicker'
-            color={this.state.brushColor}
-            onChangeComplete={this.handleColorChange.bind(this)}
-          />
-          : null}
-          
           <span
             className="brush-size-indicator"
             style={{
@@ -174,33 +177,30 @@ class Canvas extends Component {
               height: this.state.brushSize + "px",
               background: this.state.brushColor
             }}
-          /> 
-          
-
-
+          />
         </div>
-            <div className='draw-container'> 
-        <Tool
-          className='tool'
-          name="Eraser"
-          currentTool={this.state.toolId}
-          toolId="eraser"
-          onSelect={this.handleToolClick.bind(this)}
-        />
-        <Tool
-          className='tool'
-          name="Pen"
-          currentTool={this.state.toolId}
-          toolId="pen"
-          onSelect={this.handleToolClick.bind(this)}
-        />
+        <div className="draw-container">
+          <Tool
+            className="tool"
+            name="Eraser"
+            currentTool={this.state.toolId}
+            toolId="eraser"
+            onSelect={this.handleToolClick.bind(this)}
+          />
+          <Tool
+            className="tool"
+            name="Pen"
+            currentTool={this.state.toolId}
+            toolId="pen"
+            onSelect={this.handleToolClick.bind(this)}
+          />
 
-        <button onClick={this.handleClear} className='clearbtn'>Clear</button>
+          <button onClick={this.handleClear} className="clearbtn">
+            Clear
+          </button>
         </div>
-        
-       
       </div>
-    )
+    );
   }
 }
 export default Canvas;

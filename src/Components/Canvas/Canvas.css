@@ -8,6 +8,8 @@
   font-size: 15px;
   font-family: "Montserrat";
   width: 100px;
+  display: flex;
+  justify-content: center;
   
   }
 
@@ -30,17 +32,56 @@
     position: absolute; 
     left: 70px;
     top: 340px;
-    /* display: none; */
+   
   }
 
  
   
   #display {
+    /* background-image: url('menu.png');
+    background-size: 3vh;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-position-y: 450px; */
+
+    
     border: 1px solid rgb(230, 230, 230);
+    
     margin: 50px 50px 0px 50px;
+    width: 900px;
+    height: 480px;
+    
+    
+
     
 
   }
+
+  @media (min-width: 1920px) {
+    #display {
+      height: 700px;
+      width: 1280px;
+    }
+
+    .toolbox {
+      position: absolute; 
+    left: 70px;
+    top: 590px;
+    }
+
+    
+    
+  }
+
+  @media (max-width: 900px) {
+    #display {
+      height: 700px;
+      width: 500px;
+    }
+  }
+
+
+
   
   .pen-size-label {
     font-size: 15px;
@@ -55,50 +96,12 @@
     cursor: default;
   }
   
-  .join-container {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   
-  .join-header {
-    font-family: 'Arial';
-    font-size: 30px;
-  }
-  
-  .join-input {
-    font-weight: 300;
-    color: rgb(100, 100, 100);
-    padding: 5px 15px 7px 15px;
-    font-size: 20px;
-    border: none;
-    background: rgb(240, 240, 240);
-    border-radius: 5px;
-  }
-  
-  .join-button {
-    margin-top: 10px;
-    padding: 5px 15px;
-    font-size: 20px;
-    background: rgb(220, 220, 220);
-    font-weight: 300;
-    border: none;
-    border-radius: 5px;
-    color: rgb(100, 100, 100);
-    cursor: pointer;
-  }
-  .join-button:hover {
-    background: rgb(230, 230, 230);
-  }
-
 
   .draw-container {
     display: flex;
     justify-content: center;
+    margin-right: 10px;
     
 
   }
@@ -109,17 +112,23 @@
   } */
 
   .menubtn {
+    margin-top: 4px;
     cursor: pointer;
     height: 3vh;
-    position: absolute;
+   
+    
+    /* position: absolute;
     top: 78vh;
-    right: 63.9vw;
+    right: 63.9vw; */
 
-  }
+}
 
   .img {
     display: flex;
     justify-content: center;
+    
+    
+
     
   }
 

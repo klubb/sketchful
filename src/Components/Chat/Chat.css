@@ -99,7 +99,7 @@ li {
   border-bottom-left-radius: 10px;  
 }
 .me.start {
-  border-top-right-radius: 10px;  
+  border-top-right-radius: 10px;
 }
 .me.end {
   border-bottom-right-radius: 10px;  
@@ -111,3 +111,12 @@ li {
   
 }
 
+
+
+
+
+.setting {
+  margin-left: 35px;
+  opacity: .7;
+  cursor: pointer;
+}

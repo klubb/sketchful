@@ -4,6 +4,8 @@ import io from "socket.io-client";
 import { getUserData } from "../../ducks/reducer";
 import { connect } from "react-redux";
 import Messages from "../Messages/Messages";
+import axios from 'axios'
+import { bindActionCreators } from "../../../node_modules/redux";
 
 class Chat extends Component {
   constructor(props) {
@@ -18,6 +20,8 @@ class Chat extends Component {
       
     };
     this.socket = io.connect("http://localhost:4444");
+    this.handleEnter = this.handleEnter.bind(this)
+
   }
 
   
@@ -42,18 +46,22 @@ class Chat extends Component {
     });
   };
 
-  handleEnter = e => {
+  async handleEnter (e) {
     
     if(this.state.message) {
     if (e.key === "Enter" ) {
       this.socket.emit("chat", {
         name: this.props.user.username,
         message: this.state.message,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        
       });
       this.setState({
         message: ""
       });
+
+      const response = await axios.post(`/api/create`, {message: this.state.message})
+      this.props.getUserData(response)
 
       let words = this.props.words;
       for (let i = 0; i < words.length; i++) {
@@ -69,7 +77,9 @@ class Chat extends Component {
   };
 
 
-   
+   handleClick = () => {
+     console.log('clicked')
+   }
   
 
   render() {
@@ -78,7 +88,7 @@ class Chat extends Component {
     return (
       
       <div className="chat">
-        <Messages  messages={this.state.messages} user={this.props.user.username}/>
+        <Messages messages={this.state.messages} user={this.props.user.username}/>
         <p>{this.state.correct}</p>
 
         

@@ -6,6 +6,7 @@ const app = express()
 const session = require('express-session')
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const ctrl = require('../server/controller')
 
 
 
@@ -103,6 +104,10 @@ app.get('/auth/callback', async (req, res) => {
       req.session.destroy()
       res.redirect('http://localhost:3000')
   })
+
+  app.post('/api/create', ctrl.createMessage)
+
+  app.get('/api/getMessage', ctrl.getMessage)
   
 
   

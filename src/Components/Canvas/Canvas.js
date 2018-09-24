@@ -164,7 +164,7 @@ class Canvas extends Component {
         <div className="toolbox">
           {this.state.menuPressed ? (
             <ChromePicker
-              className="chromepicker"
+              className="chromepicker animated pulse faster"
               color={this.state.brushColor}
               onChangeComplete={this.handleColorChange.bind(this)}
             />

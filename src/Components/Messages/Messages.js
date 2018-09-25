@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from 'react-responsive-modal'
 import axios from 'axios'
+import {connect} from 'react-redux'
 
 class Messages extends Component {
   constructor(props) {
@@ -8,16 +9,27 @@ class Messages extends Component {
     this.state = {
       openMessage: '',
       open: false,
-      editing: false
+      editing: false,
+      messages: []
     };
 
     // this.onOpenModal = this.onOpenModal.bind(this)
   }
 
+componentDidMount () {
+  axios.get(`/api/getMessage`).then((response) => {
+    this.setState({
+      messages: response.data
+    })
+  })
+  
+}
+
  onOpenModal = () => {
    
     axios.get(`/api/getMessage`).then((response) => {
       console.log(response.data)
+    //  console.log(id)
       this.setState({
         openMessage: response.data[0].message
       })
@@ -36,12 +48,17 @@ class Messages extends Component {
 
 
   
-
+handleDelete = (id) => {
+  axios.delete(`/api/delete/${id}`).then(() => {
+    this.onCloseModal()
+  })
+}
 
  
 
   render() {
-    // console.log(this.state.openMessage)
+   console.log(this.state.messages)
+    
     
     const {open} = this.state
     let displayMessage = this.props.messages.map(message => {
@@ -56,13 +73,13 @@ class Messages extends Component {
                   <li className="name">{message.name}:</li>
 
                   {message.message}
-                  <i onClick={this.onOpenModal} className="fas fa-ellipsis-h setting"></i>
+                  <i onClick={() => this.onOpenModal(message.id)} className="fas fa-ellipsis-h setting"></i>
                   
                 </li>
-                <Modal open={open} onClose={this.onCloseModal} >
-                <input value={this.state.openMessage} type="text"/>
-                <button>Save</button> 
-                <button>Delete</button>
+                <Modal showCloseIcon={false} open={open} onClose={this.onCloseModal} >
+                <span>{this.state.openMessage}</span>
+               
+                <button onClick={this.handleDelete}>Delete</button>
                 </Modal>
                
               </div>
@@ -82,8 +99,15 @@ class Messages extends Component {
     return (
       <div className="messages">
         {displayMessage}
+        
       </div>
     );
+  }
+}
+
+function mapStateToProps({id}) {
+  return {
+    id
   }
 }
 

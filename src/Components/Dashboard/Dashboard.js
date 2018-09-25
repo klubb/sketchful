@@ -12,6 +12,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: '',
+      editing: false,
       words: [
         "cat",
         "dog",
@@ -39,6 +41,9 @@ class Dashboard extends Component {
       ],
       word: ""
     };
+    this.handleEdit = this.handleEdit.bind(this)
+    this.handleSave = this.handleSave.bind(this)
+    this.handleDeleteAccount = this.handleDeleteAccount.bind(this)
   }
 
   async componentDidMount() {
@@ -54,9 +59,35 @@ class Dashboard extends Component {
     });
   };
 
+  handleEdit = () => {
+    this.setState({
+      editing: !this.state.editing
+    })
+  }
+
+  async handleSave () {
+    const response = await axios.put('/api/edituser', {username: this.state.username})
+    this.setState({
+      editing: false
+    })
+    this.props.getUserData(response.data)
+
+  }
+
+  handleUsername = (e) => {
+    this.setState({
+  username: e.target.value
+})
+  }
+
+  async handleDeleteAccount () {
+    let response = await axios.delete('/api/deleteuser')
+
+  }
+
   render() {
     console.log(this.state.word);
-
+    console.log(this.state.username)
     let { username, picture /* auth_id*/ } = this.props.user;
     console.log(this.props.user);
     return (
@@ -76,7 +107,14 @@ class Dashboard extends Component {
             </button>
           </div>
           <div className="userinfo">
-            <h5 className='animated pulse'>{username}</h5>
+
+          <i onClick={this.handleEdit} className="fas fa-user-edit edit"></i>
+          {this.state.editing ? <div className='animated fadeInDown fast edit-container'> <input className='usernameinput 'onChange={this.handleUsername} placeholder='change username'></input> 
+          <button className='savebtn' onClick={this.handleSave}>Save</button> <button onClick={this.handleDeleteAccount} className='savebtn delete' >Delete Account</button></div>
+         
+           : null}
+
+            <h5 className='animated pulse username'>{username}</h5>
             <img className="picture animated pulse" src={picture} alt="" />
             <a href="http://localhost:4444/logout">
               <button className="logout">Logout</button>{" "}

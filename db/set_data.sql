@@ -1,2 +1,2 @@
 select * from users
-where id = 1
+where auth_id = 'google-oauth2|117167820956548381831'

@@ -15,6 +15,7 @@
 
 .userinfo {
   display: flex;
+  align-items: center;
 }
 
 .logout {
@@ -79,4 +80,77 @@ color: white;
   font-family: 'Montserrat'
 }
 
+.edit {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.edit:hover {
+  color: #ffe070 !important;
+
+border-color: #ffe070 !important;
+transition: all 0.4s ease 0s;
+}
+
+.username  {
+  margin-top: 26px;
+  margin-left: 5px;
+}
+
+.usernameinput {
+  margin-right: 8px;
+  
+  
+  appearance: none;
+  background-color: none;
+  border: 1px solid black;
+  line-height: 0;
+  font-size: 12px;
+  /* width: 100%; */
+  display: block;
+  box-sizing: border-box;
+  padding: 5px 5px;
+  border-radius: 60px;
+  color: black;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.usernameinput:focus {
+  outline: none
+}
+
+.edit-container {
+  display: flex;
+
+}
+
+.savebtn {
+  cursor: pointer;
+color: #494949 !important;
+text-transform: uppercase;
+background: #ffffff;
+padding: 0px 10px;
+border: 1px solid #494949 !important;
+border-radius: 6px;
+display: inline-block;
+font-size: 10px;
+margin-right: 10px;
+}
+
+.savebtn:hover {
+  color: #ffffff !important;
+background: #ffe070;
+border-color: #ffe070 !important;
+transition: all 0.4s ease 0s;
+}
+
+.delete:hover {
+color: #ffffff !important;
+background: red;
+border-color: red !important;
+transition: all 0.4s ease 0s;
+}
 

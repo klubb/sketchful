@@ -41,8 +41,11 @@ io.on('connection', socket => {
       })
 
       socket.on('chat', data => {
+        // db.create_message()
           console.log(data)
-          io.emit('chat', data)
+          io.emit('chat', data) 
+        //  const db = req.app.get('db')
+         
       })
       
     socket.on('cursor', data => {
@@ -108,6 +111,13 @@ app.get('/auth/callback', async (req, res) => {
   app.post('/api/create', ctrl.createMessage)
 
   app.get('/api/getMessage', ctrl.getMessage)
+
+  app.delete('/api/delete/:id', ctrl.delete)
+
+  app.put('/api/edituser', ctrl.editUser)
+
+//   app.delete('/api/deleteuser', ctrl.deleteUser)
+
   
 
   

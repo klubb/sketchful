@@ -5,7 +5,7 @@ import { getUserData } from "../../ducks/reducer";
 import { connect } from "react-redux";
 import Messages from "../Messages/Messages";
 import axios from 'axios'
-import { bindActionCreators } from "../../../node_modules/redux";
+
 
 class Chat extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class Chat extends Component {
         name: this.props.user.username,
         message: this.state.message,
         timestamp: new Date().toISOString(),
+        
         
       });
       this.setState({
@@ -112,7 +113,8 @@ class Chat extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    id: state.id
   };
 }
 

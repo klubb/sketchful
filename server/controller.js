@@ -44,14 +44,18 @@ module.exports = {
             req.session.user = user[0]
             res.status(200).send(req.session.user)
         })
-    }
+    },
 
-    // deleteUser: (req, res) => {
-    //     const db = req.app.get('db')
-    //     const {auth_id} = req.session.user
-    //     db.delete_account([auth_id]).then(() => {
-    //         res.status(200)
-    //         res.redirect('http://localhost:3000')
-    //     })
-    // }
+    deleteUser: (req, res) => {
+        const db = req.app.get('db')
+        const {auth_id} = req.session.user
+        db.delete_account([auth_id]).then(() => {
+            req.session.destroy()
+            // res.redirect('http://localhost:3000')
+            res.status(200).send('Worked')
+
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 }

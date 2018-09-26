@@ -22,16 +22,16 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use((req,res,next) => {
-    if(ENVIRONMENT === 'dev') {
-        req.app.get('db').set_data().then(userData => {
-            req.session.user = userData[0]
-            next()
-        })
-    } else {
-        next()
-    }
-})
+// app.use((req,res,next) => {
+//     if(ENVIRONMENT === 'dev') {
+//         req.app.get('db').set_data().then(userData => {
+//             req.session.user = userData[0]
+//             next()
+//         })
+//     } else {
+//         next()
+//     }
+// })
 
 
 io.on('connection', socket => {
@@ -116,7 +116,7 @@ app.get('/auth/callback', async (req, res) => {
 
   app.put('/api/edituser', ctrl.editUser)
 
-//   app.delete('/api/deleteuser', ctrl.deleteUser)
+  app.delete('/api/deleteuser', ctrl.deleteUser)
 
   
 

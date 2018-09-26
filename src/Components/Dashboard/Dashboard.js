@@ -80,9 +80,11 @@ class Dashboard extends Component {
 })
   }
 
-  async handleDeleteAccount () {
-    let response = await axios.delete('/api/deleteuser')
-
+   handleDeleteAccount = () => {
+    axios.delete('/api/deleteuser').then((res) => {
+      this.props.history.push('/')
+    })
+   
   }
 
   render() {

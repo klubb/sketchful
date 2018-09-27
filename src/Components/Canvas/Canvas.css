@@ -1,4 +1,4 @@
-.tool-container {
+/* .tool-container {
   cursor: pointer;
   margin: 15px;
   background: #ffe070;
@@ -11,15 +11,15 @@
   display: flex;
   justify-content: center;
   
-  }
+  } */
 
-  .tool-container:hover {
+  /* .tool-container:hover {
    background: lightgray
-  }
-  .tool-container--selected {
+  } */
+  /* .tool-container--selected {
     background: #1F2833;
     color: white;
-  }
+  } */
   
   .brush-size-indicator {
     position: relative;
@@ -50,6 +50,7 @@
     margin: 50px 50px 0px 50px;
     width: 900px;
     height: 480px;
+    background-color: white;
     
     
 
@@ -142,4 +143,29 @@
   font-size: 15px;
   font-family: "Montserrat";
   width: 100px;
+  }
+
+  .deleteicon {
+    cursor: pointer;
+    margin: 5px;
+    margin-left: 100px;
+    
+  }
+
+  .deleteicon:hover {
+    color: red !important;
+  /* background: red; */
+  border-color: red !important;
+  transition: all 0.4s ease 0s;
+  }
+
+  .pencilicon:hover {
+    color: #4ab5ff !important;
+    cursor: pointer;
+    border-color: red !important;
+    transition: all 0.4s ease 0s;
+  }
+
+  .pencilicon {
+    margin: 5px;
   }

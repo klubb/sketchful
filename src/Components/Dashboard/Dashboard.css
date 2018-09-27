@@ -1,16 +1,22 @@
 .header {
+  
   height: 10vh;
   border-bottom: 1px solid rgba(128, 128, 128, 0.212);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100vw
+  width: 100vw;
 }
 
 .logo {
   font-family: "lobster";
   font-size: 35px;
   margin-left: 30px;
+  -webkit-animation: bgcolor 20s infinite;
+  animation: bgcolor 10s infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  
 }
 
 .userinfo {
@@ -19,9 +25,9 @@
 }
 
 .logout {
-    cursor: pointer;
+  cursor: pointer;
   margin: 15px;
-  background: #ffe070;
+  background: #4ab5ff;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -38,46 +44,43 @@
 }
 
 .main-container {
-    display: flex;
-    height: 87.7vh;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-   
-    
-    
+  display: flex;
+  height: 87.7vh;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main {
   display: flex;
   justify-content: space-between;
-
+  
+ 
 }
 
 h5 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   margin-top: 20px;
   font-size: 16px;
 }
 
 .randombtn {
   cursor: pointer;
-width: 150px;
-height: 30px;
+  width: 150px;
+  height: 30px;
 
+  background: #1f2833;
 
-background: #1F2833;
-
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-font-size: 14px;
-font-family: 'Montserrat';
-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Montserrat";
+  color: white;
 }
 
 .worddisplay {
   width: 200px;
-  font-family: 'Montserrat'
+  font-family: "Montserrat";
 }
 
 .edit {
@@ -86,21 +89,21 @@ color: white;
 }
 
 .edit:hover {
-  color: #ffe070 !important;
+  color: #4ab5ff !important;
 
-border-color: #ffe070 !important;
-transition: all 0.4s ease 0s;
+  border-color: #4ab5ff !important;
+  transition: all 0.4s ease 0s;
 }
 
-.username  {
+.username {
   margin-top: 26px;
   margin-left: 5px;
+  
 }
 
 .usernameinput {
   margin-right: 8px;
-  
-  
+
   appearance: none;
   background-color: none;
   border: 1px solid black;
@@ -119,38 +122,67 @@ transition: all 0.4s ease 0s;
 }
 
 .usernameinput:focus {
-  outline: none
+  outline: none;
 }
 
 .edit-container {
   display: flex;
-
 }
 
 .savebtn {
   cursor: pointer;
-color: #494949 !important;
-text-transform: uppercase;
-background: #ffffff;
-padding: 0px 10px;
-border: 1px solid #494949 !important;
-border-radius: 6px;
-display: inline-block;
-font-size: 10px;
-margin-right: 10px;
+  color: #494949 !important;
+  text-transform: uppercase;
+  background: #ffffff;
+  padding: 0px 10px;
+  border: 1px solid #494949 !important;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 10px;
+  margin-right: 10px;
 }
 
 .savebtn:hover {
   color: #ffffff !important;
-background: #ffe070;
-border-color: #ffe070 !important;
-transition: all 0.4s ease 0s;
+  background: #4ab5ff;
+  border-color: #4ab5ff !important;
+  transition: all 0.4s ease 0s;
 }
 
 .delete:hover {
-color: #ffffff !important;
-background: red;
-border-color: red !important;
-transition: all 0.4s ease 0s;
+  color: #ffffff !important;
+  background: red;
+  border-color: red !important;
+  transition: all 0.4s ease 0s;
 }
+
+.logouticon {
+  margin-top: 4px;
+  margin-left: 40px;
+  color: black;
+  /* font-family: Montserrat; */
+}
+
+@keyframes bgcolor {
+  0% {
+      color: #FFE070
+  }
+
+  30% {
+      color: #45a3e5
+  }
+
+  60% {
+      color: orange
+  }
+
+  90% {
+      color: lightpink
+  }
+
+  100% {
+      color: plum
+  }
+}
+
 

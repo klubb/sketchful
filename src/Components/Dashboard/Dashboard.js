@@ -93,10 +93,10 @@ class Dashboard extends Component {
     let { username, picture /* auth_id*/ } = this.props.user;
     console.log(this.props.user);
     return (
-      <div>
+      <div className='animated zoomIn faster'>
         <div className="header">
           <h1 className="logo animated jackInTheBox">
-            <i className="fas fa-pencil-alt fa-1x" /> Sketchful{" "}
+             Sketchful{" "}
           </h1>
           <div />
           <div />
@@ -119,7 +119,8 @@ class Dashboard extends Component {
             <h5 className='animated pulse username'>{username}</h5>
             <img className="picture animated pulse" src={picture} alt="" />
             <a href="http://localhost:4444/logout">
-              <button className="logout">Logout</button>{" "}
+              {/* <button className="logout">Logout</button>{" "} */}
+              <i className="fas fa-sign-out-alt logouticon"> </i>
             </a>
           </div>
         </div>

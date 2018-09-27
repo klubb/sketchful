@@ -180,24 +180,27 @@ class Canvas extends Component {
           />
         </div>
         <div className="draw-container">
+        
           <Tool
-            className="tool"
-            name="Eraser"
-            currentTool={this.state.toolId}
-            toolId="eraser"
-            onSelect={this.handleToolClick.bind(this)}
-          />
-          <Tool
-            className="tool"
-            name="Pen"
+            // className="tool"
+            // name="Eraser"
             currentTool={this.state.toolId}
             toolId="pen"
             onSelect={this.handleToolClick.bind(this)}
           />
+          {/* <i class="fas fa-pencil-alt"></i> */}
+          {/* <Tool
+            // className="tool"
+            // name="Pen"
+            currentTool={this.state.toolId}
+            toolId="pen"
+            onSelect={this.handleToolClick.bind(this)}
+          /> */}
 
-          <button onClick={this.handleClear} className="clearbtn">
+          {/* <button onClick={this.handleClear} className="clearbtn">
             Clear
-          </button>
+          </button> */}
+          <i onClick={this.handleClear} className="fas fa-trash-alt fa-2x deleteicon"></i>
         </div>
       </div>
     );

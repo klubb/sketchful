@@ -1,4 +1,4 @@
-
+/* 
 
 .background {
     background-color: #1F2833;
@@ -10,24 +10,24 @@
     align-content: center;
 }
 
-.container {
+/* .container {
     background-color: white;
     height: 70vh;
     width: 70vw;
     display: flex;
-    /* border: solid 1px black; */
+
     
     
    
 
-}
+} */
 
 .info {
 display: flex;
 justify-content: center;
 flex-direction: column;
 align-items: center;
-margin-left: 115px;
+/* margin-left: 115px; */
 /* margin-bottom: px; */
 
 }
@@ -45,6 +45,7 @@ margin-left: 115px;
     /* margin-top: 50px; */
   
    width: 35vw;
+  
    
 }
 
@@ -67,7 +68,7 @@ font-family: 'Montserrat'
     background-color: #ECCE30;
 }
 
-h1 {
+.sketchful {
     font-size: 56px;
     font-family: 'Lobster' 
 
@@ -76,10 +77,14 @@ h1 {
 h3 {
     font-size: 24px;
     font-family: 'Montserrat'
-}
+} 
 
 @media (min-width: 1920px) {
 .info {
     margin-left: 190px;
 }
+}
+
+.pencil {
+    height: 30vh;
 }

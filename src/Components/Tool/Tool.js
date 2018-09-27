@@ -7,14 +7,18 @@ export default class Tool extends Component {
   render() {
     return (
       <div
+     
         onClick={this.handleOnClick.bind(this)}
         className={`tool-container ${
           this.props.currentTool === this.props.toolId
-            ? "tool-container--selected"
+            ? "tool-container--selected" 
             : ""
         }`}
       >
         <code>{this.props.name}</code>
+        
+        <i className="fas fa-pencil-alt fa-2x pencilicon"></i>
+        
       </div>
     );
   }

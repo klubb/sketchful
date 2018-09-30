@@ -57,8 +57,9 @@ handleDelete = (id) => {
  
 
   render() {
-   console.log(this.state.messages)
+  //  console.log(this.state.messages)
     
+
     
     const {open} = this.state
     let displayMessage = this.props.messages.map(message => {

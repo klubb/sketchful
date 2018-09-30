@@ -19,13 +19,16 @@ class Chat extends Component {
       timeout: undefined,
       
     };
-    this.socket = io.connect("http://localhost:4444");
+    // this.socket = io.connect("http://localhost:4444");
     this.handleEnter = this.handleEnter.bind(this)
+    
 
   }
 
   
   componentDidMount() {
+    this.socket = io.connect("http://localhost:4444");
+
     this.socket.on("chat", msg => {
       let messages = this.state.messages
       messages.push(msg)
@@ -36,7 +39,7 @@ class Chat extends Component {
     });
   }
 
-  componentWillUnmount() {
+  compnentWillUnmount() {
     this.socket.close();
   }
 
@@ -54,6 +57,7 @@ class Chat extends Component {
         name: this.props.user.username,
         message: this.state.message,
         timestamp: new Date().toISOString(),
+
         
         
       });
@@ -84,7 +88,7 @@ class Chat extends Component {
   
 
   render() {
-
+console.log(this.state.message)
 
     return (
       

@@ -3,7 +3,8 @@ import { ChromePicker } from "react-color";
 import Tool from "../Tool/Tool";
 import io from "socket.io-client";
 import "./Canvas.css";
-import menu from "./menu.png";
+// import menu from "./menu.png";
+// import styled from 'styled-components'
 
 const serverAddress = "http://localhost:4444";
 
@@ -30,6 +31,9 @@ class Canvas extends Component {
 
   componentDidMount() {
     this.socket = io(serverAddress);
+    this.socket.emit("join room", {
+      room: this.props.value
+    });
     this.socket.on("line", data => {
       if (this.state.loaded) {
         const [x1, y1, x2, y2] = data.lineCoordinates;
@@ -68,6 +72,7 @@ class Canvas extends Component {
       switch (this.state.toolId) {
         case "pen":
           this.socket.emit("line", {
+            room: this.props.value,
             lineWidth: this.state.brushSize,
             lineColor: this.state.brushColor,
             lineCoordinates: [
@@ -81,6 +86,7 @@ class Canvas extends Component {
           break;
         case "eraser":
           this.socket.emit("line", {
+            room: this.props.value,
             lineWidth: this.state.brushSize,
             lineColor: { r: 255, g: 255, b: 255, a: this.state.brushColor.a },
             lineCoordinates: [
@@ -108,6 +114,7 @@ class Canvas extends Component {
       });
     }
     this.socket.emit("cursor", {
+      room: this.props.value,
       x: this.state.mouseX,
       y: this.state.mouseY,
       sessionKey: window.localStorage.getItem("sessionKey")
@@ -138,72 +145,71 @@ class Canvas extends Component {
   };
 
   render() {
+    let width = window.screen.availWidth;
+    let height = window.screen.availHeight;
     
-    return (
-      <div>
-        <canvas
-          
+      return (
+        <div>
+          <canvas
+            id="display"
+            width="930"
+            height="520"
+            ref={this.display}
+            onMouseMove={this.handleDisplayMouseMove.bind(this)}
+            onMouseDown={this.handleDisplayMouseDown.bind(this)}
+            onMouseUp={this.handleDisplayMouseUp.bind(this)}
+          />
 
-          
-          id="display"
-          width="900"
-          height="480"
-          ref={this.display}
-          onMouseMove={this.handleDisplayMouseMove.bind(this)}
-          onMouseDown={this.handleDisplayMouseDown.bind(this)}
-          onMouseUp={this.handleDisplayMouseUp.bind(this)}
-          
-        />
-        
-        <div className="img">
-          {/* <img onClick={this.handleMenu} className='menubtn' src={menu} 
+          <div className="img">
+            {/* <img onClick={this.handleMenu} className='menubtn' src={menu} 
           alt=""/> */}
-          <i onClick={this.handleMenu} className="fas fa-bars menubtn"></i>
-        </div>
+            <i onClick={this.handleMenu} className="fas fa-bars menubtn" />
+          </div>
 
-        <div className="toolbox">
-          {this.state.menuPressed ? (
-            <ChromePicker
-              className="chromepicker animated pulse faster"
-              color={this.state.brushColor}
-              onChangeComplete={this.handleColorChange.bind(this)}
+          <div className="toolbox">
+            {this.state.menuPressed ? (
+              <ChromePicker
+                className="chromepicker animated pulse faster"
+                color={this.state.brushColor}
+                onChangeComplete={this.handleColorChange.bind(this)}
+              />
+            ) : null}
+
+            <span
+              className="brush-size-indicator"
+              style={{
+                width: this.state.brushSize + "px",
+                height: this.state.brushSize + "px",
+                background: this.state.brushColor
+              }}
             />
-          ) : null}
+          </div>
 
-          <span
-            className="brush-size-indicator"
-            style={{
-              width: this.state.brushSize + "px",
-              height: this.state.brushSize + "px",
-              background: this.state.brushColor
-            }}
-          />
-        </div>
-        <div className="draw-container">
-        
-          <Tool
-            // className="tool"
-            // name="Eraser"
-            currentTool={this.state.toolId}
-            toolId="pen"
-            onSelect={this.handleToolClick.bind(this)}
-          />
-          {/* <i class="fas fa-pencil-alt"></i> */}
-          {/* <Tool
-            // className="tool"
-            // name="Pen"
-            currentTool={this.state.toolId}
-            toolId="pen"
-            onSelect={this.handleToolClick.bind(this)}
-          /> */}
+          <div className="draw-container">
+            {/* <Tool
+              className="tool"
+              name="Eraser"
+              currentTool={this.state.toolId}
+              toolId="pen"
+              onSelect={this.handleToolClick.bind(this)}
+            />
 
-          {/* <button onClick={this.handleClear} className="clearbtn">
-            Clear
-          </button> */}
-          <i onClick={this.handleClear} className="fas fa-trash-alt fa-2x deleteicon"></i>
+            <Tool
+              className="tool"
+              name="Pen"
+              currentTool={this.state.toolId}
+              toolId="pen"
+              onSelect={this.handleToolClick.bind(this)}
+            /> */}
+
+            <button onClick={this.handleClear} className="clearbtn">
+              Clear Canvas
+            </button>
+          </div>
+
+          <h4 className="channel">{this.props.value} Room</h4>
         </div>
-      </div>
-    );
+      );
   }
 }
 export default Canvas;

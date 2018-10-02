@@ -17,7 +17,7 @@ export default class Tool extends Component {
       >
         <code>{this.props.name}</code>
         
-        <i className="fas fa-pencil-alt fa-2x pencilicon"></i>
+        {/* <i className="fas fa-pencil-alt fa-2x pencilicon"></i> */}
         
       </div>
     );

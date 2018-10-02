@@ -4,7 +4,7 @@ import "./Login.css";
 import pencil1 from "./pencil1.png";
 
 import styled from "styled-components";
-
+import {Link} from 'react-router-dom'
 const Background = styled.div`
  
 
@@ -19,7 +19,7 @@ const Background = styled.div`
   background-image: url(${pencil1});
   background-position: center;
   background-size: 98vh;
-  background-g
+
 `;
 
 const Header = styled.div`
@@ -101,8 +101,9 @@ class Login extends Component {
           <Header>
             <Logo className='animated pulse' > Sketchful </Logo>
             <Menu>
-              <li>About</li>
-              <li>Contact</li> 
+
+             <Link style={{textDecoration: 'none', color: 'white'}}to='/about' ><li>About</li></Link>
+             <Link style={{textDecoration: 'none', color: 'white'}}to='/contact' ><li>Links</li></Link>
               <li></li>
               
             </Menu>

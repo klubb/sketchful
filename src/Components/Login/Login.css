@@ -67,7 +67,16 @@ font-family: 'Montserrat'
 .login:hover {
     background-color: #ECCE30;
 }
-
+hr {
+    border: black 1px solid;
+    height: 32px;
+    opacity: .2;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+.chevron {
+    color: white;
+}
 .sketchful {
     font-size: 56px;
     font-family: 'Lobster' 
@@ -87,4 +96,8 @@ h3 {
 
 .pencil {
     height: 30vh;
+}
+
+li {
+    text-decoration: none;
 }

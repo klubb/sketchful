@@ -1,0 +1,37 @@
+
+
+.selectroom {
+    width: 250px;
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 95% 0;
+   height: 30px;
+   overflow: hidden;
+   width: 240px;
+    
+}
+
+.select {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+    width: 200px;
+}
+
+
+
+.select-style select:focus {
+    outline: none;
+}
+

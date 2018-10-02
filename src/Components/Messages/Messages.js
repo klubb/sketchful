@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from 'react-responsive-modal'
 import axios from 'axios'
-import {connect} from 'react-redux'
+
 
 class Messages extends Component {
   constructor(props) {
@@ -74,7 +74,7 @@ handleDelete = (id) => {
                   <li className="name">{message.name}:</li>
 
                   {message.message}
-                  <i onClick={() => this.onOpenModal(message.id)} className="fas fa-ellipsis-h setting"></i>
+                  {/* <i onClick={() => this.onOpenModal(message.id)} className="fas fa-ellipsis-h setting"></i> */}
                   
                 </li>
                 <Modal showCloseIcon={false} open={open} onClose={this.onCloseModal} >
@@ -106,10 +106,5 @@ handleDelete = (id) => {
   }
 }
 
-function mapStateToProps({id}) {
-  return {
-    id
-  }
-}
 
 export default Messages;

@@ -50,22 +50,18 @@ io.on("connection", socket => {
     console.log("user disconnected");
   });
 
-//   socket.on("chat", data => {
-//     console.log(data);
-//     io.emit("chat", data);
-//   });
-
   socket.on('join room', data => {
     console.log('Room joined', data.room)
     
     socket.join(data.room);
     io.to(data.room).emit('room joined', data.room);
+
   })
 
   socket.on("chat", data => {
-      console.log(data.room)
+      // console.log(data.room)
       // io.emit('chat', data)
-    io.in(data.room).emit("chat", data);
+    io.to(data.room).emit("chat", data);
   });
 
   socket.on('message sent', function(data) {
@@ -75,15 +71,15 @@ io.on("connection", socket => {
 
 
   socket.on("cursor", data => {
-    io.emit("cursor", {
+    io.to(data.room).emit("cursor", {
       lineWidth: data.lineWidth,
       lineColor: data.lineColor,
-      lineCoordinates: data.lineCoordinates
-      //    name: sessions[data.sessionKey]
+      lineCoordinates: data.lineCoordinates,
+        //  name: sessions[data.sessionKey]
     });
   });
   socket.on("line", data => {
-    io.emit("line", {
+    io.to(data.room).emit("line", {
       lineWidth: data.lineWidth,
       lineColor: data.lineColor,
       lineCoordinates: data.lineCoordinates
@@ -122,21 +118,12 @@ app.get("/auth/callback", async (req, res) => {
     let createUser = await db.create_user([name, picture, sub]);
     req.session.user = createUser[0];
   }
-  res.redirect("/#/room");
+  res.redirect("/#/dashboard");
 });
 
-app.get("/api/user-data", (req, res) => {
-  if (req.session.user) {
-    res.status(200).send(req.session.user);
-  } else {
-    res.status(401).send("Go Log in");
-  }
-});
+app.get("/api/user-data", ctrl.checkUser);
 
-app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("http://localhost:3000");
-});
+app.get("/logout", ctrl.logout);
 
 app.post("/api/create", ctrl.createMessage);
 

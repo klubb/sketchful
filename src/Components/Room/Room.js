@@ -1,22 +1,9 @@
 import React, { Component } from "react";
 import "./Room.css";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import io from 'socket.io-client'
 
-const Background = styled.div`
-  background-repeat: no-repeat;
-  background-color: #4ab5ff;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  // -webkit-animation: bgcolor 20s infinite;
-  // animation: bgcolor 10s infinite;
-  // -webkit-animation-direction: alternate;
-  // animation-direction: alternate;
-`;
+import io from "socket.io-client";
+import pencil1 from "./pencil1.png";
 
 const Container = styled.div`
   //   background-color: white;
@@ -37,129 +24,167 @@ const Button = styled.button`
   color: white;
   font-size: 20px;
     font-family: Oswald
-    margin: 10px;
+    margin: 15px;
     cursor: pointer;
+    &:hover {
+      background: white;
+      color: black;
+      transition: all 0.4s ease 0s;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border: black;
+        }
 `;
 
-const Input = styled.input`
-  width: 15vw;
-  height: 6vh;
-  border: solid 2px black;
-  font-size: 20px;
-  font-family: Montserrat
-  text-align: center;
-  
-  &::placeholder{text-align: center}
+const Info = styled.h2`
+  color: white;
+  font-size: 50px;
+`;
 
+const Background = styled.div`
+ 
+
+  background-repeat: no-repeat;
+  background-color: #4ab5ff;
+  height: 100vh;
+  width: 100vw;
+  // overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-image: url(${pencil1});
+  background-position: center;
+  background-size: 98vh;
+  background-g
+`;
+
+const Header = styled.div`
+  width: 85vw;
+  display: flex;
+  // padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+  // border: solid black 1px;
+  margin-top: 70px;
+  // margin-left: 55px;
+`;
+
+const Menu = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: Montserrat;
 `;
 
 const Logo = styled.h1`
   font-family: Lobster;
-  font-size: 70px;
-  // -webkit-animation: bgcolor 20s infinite;
-  // animation: bgcolor 10s infinite;
-  // -webkit-animation-direction: alternate;
-  // animation-direction: alternate;
+  font-weight: bold;
+  margin: 0;
+  color: white;
 `;
 
-// const Select = styled.select`
+const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // border: solid 1px black;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  margin-bottom: 60px;
+`;
 
-// width: 200px;
-// display: block; padding: 10px 70px 10px 13px !important; max-width: 100%; height: auto !important; border: 1px solid #e3e3e3; border-radius: 3px; background: url("https://image.ibb.co/iMeAJv/selectbox_arrow.png") right center no-repeat; background-color: #fff; color: #444444; font-size: 12px; line-height: 16px !important; appearance: none; /* this is must */ -webkit-appearance: none; -moz-appearance: none; 
+const Description = styled.h1`
+  color: white;
+  font-size: 70px;
+`;
 
-
-// `;
-
-const Info = styled.h2 `
-color: white;
-`
-
+const User = styled.h1`
+  color: white;
+  font-family: Quicksand;
+  font-size: 20px;
+`;
+const Img = styled.img`
+  height: 30px;
+  width: 30px;
+  margin: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+const UserDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
 class Room extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      value: this.props.value
     };
 
-    
-    this.updateMessages = this.updateMessages.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
     this.joinSuccess = this.joinSuccess.bind(this);
   }
 
-
-
   componentDidMount() {
-    this.socket = io("http://localhost:4444")
-    this.socket.on('message dispatched', this.updateMessages)
-    this.socket.on('welcome', this.setUserId)
-    this.socket.on('room joined', this.joinSuccess)
-    this.joinRoom()
+    this.socket = io("http://localhost:4444");
+    this.socket.on("message dispatched", this.updateMessages);
+    this.socket.on("welcome", this.setUserId);
+    this.socket.on("room joined", this.joinSuccess);
+    // this.joinRoom()
   }
 
-  updateMessages(message) {
-    const updatedMessages = this.state.messages.slice()
-    updatedMessages.push(message)
-    this.setState({
-      messages: updatedMessages
-    })
-  }
-
-  sendMessage() {
-    this.socket.emit('message sent', {
-      message: this.refs.message.value,
+  joinRoom(e) {
+    this.props.changeState(e.target.value);
+    this.socket.emit("join room", {
       room: this.refs.room.value
-    })
-    this.refs.message.value = '';
-  }
-
-  joinRoom() {
-    this.socket.emit('join room', {
-      room: this.refs.room.value
-    })
-    
+    });
   }
 
   joinSuccess(room) {
-    console.log("you successfully joined room " + room)
+    console.log("you successfully joined room " + room);
   }
- 
+
   render() {
-    const messages = this.state.messages.map((e,i) => {
-      const styles = e.user === this.state.userID ? {alignSelf: "flex-end", backgroundColor: "#2d96fb", color: "white"} : {alignSelf: "flex-start", backgroundColor: "#e5e6ea"}
-      return (
-        <p key={i} style={styles}>{e.message}</p>
-      )
-    })
+    console.log(this.props.value);
+
+    if (this.props.value === "Snow" && this.props.user.id != 12) {
+      window.location.reload();
+      alert("Access Denied");
+    }
     return (
       <Background>
-        <Container className="animated fadeInDownBig">
+        <Header>
+          <Logo className="animated fadeInDown delay-1s"> Sketchful </Logo>
+          <UserDiv className="animated fadeInDown delay-1s">
+            <User> {this.props.user.username} </User>
+            <Img src={this.props.user.picture} />
+          </UserDiv>
+        </Header>
+        <Container className="animated fadeIn">
           {" "}
-          <Logo> Sketchful </Logo>
-          <Info>Join a Room</Info>
-          <select ref='room' defaultValue='Global' onChange={this.joinRoom}>
-            <option>Global</option>
-            <option>Stark</option>
-            <option>Lannister</option>
-            <option>Targaryen</option>
-            <option>Tyrell</option>
-            <option>Baratheon</option>
-            <option>Greyjoy</option>
-          </select>
-
-           
-        <div className="messages">
-          {messages}
-        </div>
-        <div className="input">
-          <input ref="message" />
-          <button onClick={this.sendMessage}>Send</button>
-        </div>
-          <Link to="/dashboard">
-            <Button> Enter </Button>
-          </Link>{" "}
-          
+          <Info>Select a Room</Info>
+          <div className="select ">
+            <select
+              className="selectroom"
+              ref="room"
+              defaultValue="Global"
+              onChange={this.joinRoom}
+            >
+              <option>Global</option>
+              <option>Stark</option>
+              <option>Lannister</option>
+              <option>Targaryen</option>
+              <option>Tyrell</option>
+              <option>Baratheon</option>
+              <option>Greyjoy</option>
+              <option>Snow</option>
+            </select>
+          </div>
+          {/* <Link to="/dashboard"> */}
+          <Button onClick={this.props.handleEnter}> Enter </Button>
+          {/* </Link>{" "} */}
         </Container>
       </Background>
     );

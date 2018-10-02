@@ -4,7 +4,10 @@ import io from "socket.io-client";
 import { getUserData } from "../../ducks/reducer";
 import { connect } from "react-redux";
 import Messages from "../Messages/Messages";
-import axios from 'axios'
+import axios from "axios";
+
+
+
 
 
 class Chat extends Component {
@@ -14,32 +17,32 @@ class Chat extends Component {
       // words: ["cat", "dog", "sun", "cup", "pie", "bug", "snake", "tree"],
       messages: [],
       message: "",
-      correct: '',
+      correct: "",
       typing: false,
-      timeout: undefined,
-      
+      timeout: undefined
     };
     // this.socket = io.connect("http://localhost:4444");
-    this.handleEnter = this.handleEnter.bind(this)
-    
-
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
-  
   componentDidMount() {
     this.socket = io.connect("http://localhost:4444");
 
+    this.socket.emit('join room', {
+      room: this.props.value
+    })
+
     this.socket.on("chat", msg => {
-      let messages = this.state.messages
-      messages.push(msg)
+      console.log('test')
+      let messages = this.state.messages;
+      messages.push(msg);
       this.setState({
-        messages: messages 
-      })
-      
+        messages: messages
+      });
     });
   }
 
-  compnentWillUnmount() {
+  componentWillUnmount() {
     this.socket.close();
   }
 
@@ -49,54 +52,51 @@ class Chat extends Component {
     });
   };
 
-  async handleEnter (e) {
-    
-    if(this.state.message) {
-    if (e.key === "Enter" ) {
-      this.socket.emit("chat", {
-        name: this.props.user.username,
-        message: this.state.message,
-        timestamp: new Date().toISOString(),
+  async handleEnter(e) {
+    if (this.state.message) {
+      if (e.key === "Enter") {
+        this.socket.emit("chat", {
+          name: this.props.user.username,
+          message: this.state.message,
+          timestamp: new Date().toISOString(),
+          room: this.props.value
+        });
+        this.setState({
+          message: ""
+        });
 
-        
-        
-      });
-      this.setState({
-        message: ""
-      });
+        const response = await axios.post(`/api/create`, {
+          message: this.state.message
+        });
+        this.props.getUserData(response);
 
-      const response = await axios.post(`/api/create`, {message: this.state.message})
-      this.props.getUserData(response)
-
-      let words = this.props.words;
-      for (let i = 0; i < words.length; i++) {
-        if (this.state.message === this.props.word) {
-          this.setState({
-            correct: 'Correct!'
-          })
+        let words = this.props.words;
+        for (let i = 0; i < words.length; i++) {
+          if (this.state.message === this.props.word) {
+            this.setState({
+              correct: "Correct!"
+            });
+          }
         }
       }
-      
     }
   }
+
+  handleClick = () => {
+    console.log("clicked");
   };
 
-
-   handleClick = () => {
-     console.log('clicked')
-   }
-  
-
   render() {
-console.log(this.state.message)
+    console.log(this.state.message);
 
     return (
-      
       <div className="chat">
-        <Messages messages={this.state.messages} user={this.props.user.username}/>
+      
+        <Messages
+          messages={this.state.messages}
+          user={this.props.user.username}
+        />
         <p>{this.state.correct}</p>
-
-        
 
         <textarea
           value={this.state.message}
@@ -106,11 +106,7 @@ console.log(this.state.message)
           placeholder="Type a message... "
           type="text"
         />
-
-        
-        
       </div>
-      
     );
   }
 }

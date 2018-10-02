@@ -9,6 +9,7 @@
 }
 
 .logo {
+  cursor: pointer;
   font-family: "lobster";
   font-size: 35px;
   margin-left: 30px;
@@ -26,13 +27,16 @@
 
 .logout {
   cursor: pointer;
-  margin: 15px;
-  background: #4ab5ff;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 80px;
+  height: 25px;
+  margin-left: 15px;
+  background: #45a3e5;
+  border: #1F2833 1px solid;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12); */
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Montserrat";
+  color: white;
 }
 
 .picture {
@@ -49,6 +53,7 @@
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  
 }
 
 .main {
@@ -68,14 +73,23 @@ h5 {
   cursor: pointer;
   width: 150px;
   height: 30px;
-
-  background: #1f2833;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-left: 15px;
+  background: transparent;
+  border: #1F2833 1px solid;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   font-size: 14px;
   font-family: "Montserrat";
+  color: #1F2833;
+}
+
+.randombtn:hover {
+  background: #1F2833;
   color: white;
+    transition: all 0.4s ease 0s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: #1F2833;
+      
 }
 
 .worddisplay {
@@ -98,6 +112,8 @@ h5 {
 .username {
   margin-top: 26px;
   margin-left: 5px;
+  font-family: Quicksand;
+  font-size: 18px;
   
 }
 
@@ -106,7 +122,7 @@ h5 {
 
   appearance: none;
   background-color: none;
-  border: 1px solid black;
+  border: 1px solid #1F2833;
   line-height: 0;
   font-size: 12px;
   /* width: 100%; */
@@ -114,7 +130,7 @@ h5 {
   box-sizing: border-box;
   padding: 5px 5px;
   border-radius: 60px;
-  color: black;
+  color: #1F2833;
   font-weight: 100;
   letter-spacing: 0.01em;
   position: relative;
@@ -159,7 +175,7 @@ h5 {
 .logouticon {
   margin-top: 4px;
   margin-left: 40px;
-  color: black;
+  color: #1F2833;
   /* font-family: Montserrat; */
 }
 
@@ -186,3 +202,10 @@ h5 {
   }
 }
 
+.channel {
+  position: absolute;
+  bottom: 82vh;
+  left: 31vw;
+  color: #1F2833;
+  font-family: 'Quicksand';
+}

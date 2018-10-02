@@ -1,171 +1,156 @@
-/* .tool-container {
+.tool-container:hover {
+  background: #ffe070;
+  transition: all 0.4s ease 0s;
+
+  color: black;
+}
+.tool-container--selected {
   cursor: pointer;
   margin: 15px;
-  background: #ffe070;
+  background: #1f2833;
   padding: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   font-size: 15px;
   font-family: "Montserrat";
   width: 100px;
-  display: flex;
-  justify-content: center;
-  
-  } */
+  color: white;
+  background: #1f2833;
+  color: white;
+  display: none;
+}
 
-  /* .tool-container:hover {
-   background: lightgray
-  } */
-  /* .tool-container--selected {
-    background: #1F2833;
-    color: white;
-  } */
-  
-  .brush-size-indicator {
-    position: relative;
-    border-radius: 50px;
-    display: block;
-    color: white;
-  }
-  
-  .toolbox {
-    position: absolute; 
-    left: 70px;
-    top: 340px;
-   
-  }
+.brush-size-indicator {
+  position: relative;
+  border-radius: 50px;
+  display: block;
+  color: white;
+}
 
- 
-  
-  #display {
-    /* background-image: url('menu.png');
+.toolbox {
+  position: absolute;
+  left: 70px;
+  top: 340px;
+}
+
+#display {
+  /* background-image: url('menu.png');
     background-size: 3vh;
     background-repeat: no-repeat;
     background-position: bottom;
     background-position-y: 450px; */
 
-    
-    border: 1px solid rgb(230, 230, 230);
-    
-    margin: 50px 50px 0px 50px;
-    width: 900px;
-    height: 480px;
-    background-color: white;
-    
-    
+  border: 1px solid rgb(230, 230, 230);
 
-    
+  margin: 50px 50px 0px 50px;
 
+  background-color: white;
+}
+
+@media (min-width: 1920px) {
+  #display {
+    height: 700px;
+    width: 1280px;
   }
 
-  @media (min-width: 1920px) {
-    #display {
-      height: 700px;
-      width: 1280px;
-    }
-
-    .toolbox {
-      position: absolute; 
+  .toolbox {
+    position: absolute;
     left: 70px;
     top: 590px;
-    }
-
-    
-    
   }
+}
 
-  @media (max-width: 900px) {
-    #display {
-      height: 700px;
-      width: 500px;
-    }
+@media (max-width: 900px) {
+  #display {
+    height: 700px;
+    width: 500px;
   }
+}
 
+.pen-size-label {
+  font-size: 15px;
+}
 
+.cursor {
+  position: absolute;
+  color: silver;
+  font-family: "Arial";
+  font-size: 10px;
+  user-select: none;
+  cursor: default;
+}
 
-  
-  .pen-size-label {
-    font-size: 15px;
-  }
-  
-  .cursor {
-    position: absolute;
-    color: silver;
-    font-family: 'Arial';
-    font-size: 10px;
-    user-select: none;
-    cursor: default;
-  }
-  
+.draw-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
 
-  .draw-container {
-    display: flex;
-    justify-content: center;
-    margin-right: 10px;
-    
+}
 
-  }
-
-  /* .chromepicker {
+/* .chromepicker {
     height: 400px;
     width: 100px;
   } */
 
-  .menubtn {
-    margin-top: 4px;
-    cursor: pointer;
-    height: 3vh;
-   
-    
-    /* position: absolute;
-    top: 78vh;
-    right: 63.9vw; */
-
+.menubtn {
+  margin-top: 4px;
+  cursor: pointer;
+  height: 3vh;
+  
+ 
 }
 
-  .img {
-    display: flex;
-    justify-content: center;
-    
-    
+.img {
+  display: flex;
+  justify-content: center;
+}
 
-    
-  }
+.tool {
+  font-family: "Montserrat";
+}
 
-  .clearbtn {
+.clearbtn {
   cursor: pointer;
-  margin: 15px;
-  background: #ffe070;
-  padding: 10px;
+  background: #1f2833;
+  padding: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Montserrat";
-  width: 100px;
-  }
+  width: 120px;
+  color: white;
+  
+}
 
-  .deleteicon {
-    cursor: pointer;
-    margin: 5px;
-    margin-left: 100px;
-    
-  }
+.clearbtn:hover {
+  background-color: #ffe070;
+  transition: all 0.4s ease 0s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: black;
+  border: black 1px solid;
+}
 
-  .deleteicon:hover {
-    color: red !important;
+.deleteicon {
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 100px;
+}
+
+.deleteicon:hover {
+  color: red !important;
   /* background: red; */
   border-color: red !important;
   transition: all 0.4s ease 0s;
-  }
+}
 
-  .pencilicon:hover {
-    color: #4ab5ff !important;
-    cursor: pointer;
-    border-color: red !important;
-    transition: all 0.4s ease 0s;
-  }
+.pencilicon:hover {
+  color: #4ab5ff !important;
+  cursor: pointer;
+  border-color: red !important;
+  transition: all 0.4s ease 0s;
+}
 
-  .pencilicon {
-    margin: 5px;
-  }
+.pencilicon {
+  margin: 5px;
+}

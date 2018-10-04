@@ -18,7 +18,7 @@ const {
   CLIENT_SECRET,
   CONNECTION_STRING,
   ENVIRONMENT,
-  REACT_APP_URI
+  HTTPS
 } = process.env;
 
 massive(CONNECTION_STRING).then(db => app.set("db", db));
@@ -106,7 +106,7 @@ app.get("/auth/callback", async (req, res) => {
     client_secret: CLIENT_SECRET,
     code: req.query.code,
     grant_type: "authorization_code",
-    redirect_uri: `REACT_APP_URI://${req.headers.host}/auth/callback`
+    redirect_uri: `${HTTPS}://${req.headers.host}/auth/callback`
   };
   // post request with code for token
   let tokenRes = await axios.post(

@@ -17,7 +17,8 @@ const {
   REACT_APP_CLIENT_ID,
   CLIENT_SECRET,
   CONNECTION_STRING,
-  ENVIRONMENT
+  ENVIRONMENT,
+  REACT_APP_URI
 } = process.env;
 
 massive(CONNECTION_STRING).then(db => app.set("db", db));
@@ -105,7 +106,7 @@ app.get("/auth/callback", async (req, res) => {
     client_secret: CLIENT_SECRET,
     code: req.query.code,
     grant_type: "authorization_code",
-    redirect_uri: `http://${req.headers.host}/auth/callback`
+    redirect_uri: `REACT_APP_URI://${req.headers.host}/auth/callback`
   };
   // post request with code for token
   let tokenRes = await axios.post(
@@ -131,7 +132,7 @@ app.get("/auth/callback", async (req, res) => {
     req.session.user = createUser[0];
   }
   res.redirect("/#/dashboard");
-});
+})
 
 app.get("/api/user-data", ctrl.checkUser);
 

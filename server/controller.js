@@ -61,7 +61,7 @@ module.exports = {
 
     logout: (req, res) => {
         req.session.destroy();
-        res.redirect(process.env.REACT_APP_REDIRECT)
+        res.redirect(process.env.REACT_APP_HOME)
     },
 
     checkUser: (req,res) => {

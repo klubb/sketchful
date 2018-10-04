@@ -104,7 +104,7 @@ class Dashboard extends Component {
 
   handleDeleteAccount = () => {
     axios.delete("/api/deleteuser").then(res => {
-      this.props.history.push("/");
+      window.location.href = process.env.REACT_APP_HOME
     });
   };
 
@@ -132,7 +132,7 @@ class Dashboard extends Component {
  }
   
  logoClick = () => {
-   this.props.history.push('/')
+  window.location.href = process.env.REACT_APP_HOME
  }
 
  userJoined = (user) => {
@@ -201,7 +201,7 @@ this.timeout = setTimeout(() => {
             <img className="picture animated pulse" src={picture} alt="" />
             <a href={process.env.REACT_APP_LOGOUT}>
               <button className="logout">Logout</button>{" "}
-              {/* <i className="fas fa-sign-out-alt logouticon"> </i> */}
+              
             </a>
           </div>
         </div>

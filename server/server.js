@@ -22,6 +22,8 @@ const {
 
 massive(CONNECTION_STRING).then(db => app.set("db", db));
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -63,6 +65,16 @@ io.on("connection", socket => {
       // io.emit('chat', data)
     io.to(data.room).emit("chat", data);
   });
+
+  socket.on('typing', data => {
+    io.to(data.room).emit('typing', data.user)
+  })
+
+  socket.on('join', data => {
+    console.log(data.room)
+    console.log(data.user)
+    io.to(data.room).emit('join', data.user)
+  })
 
   socket.on('message sent', function(data) {
    
@@ -134,6 +146,8 @@ app.delete("/api/delete/:id", ctrl.delete);
 app.put("/api/edituser", ctrl.editUser);
 
 app.delete("/api/deleteuser", ctrl.deleteUser);
+
+app.delete('/api/deleteMessage', ctrl.deleteMessages)
 
 server.listen(SERVER_PORT, () => {
   console.log(`listening on port ${SERVER_PORT}`);

@@ -51,7 +51,7 @@ module.exports = {
         const {auth_id} = req.session.user
         db.delete_account([auth_id]).then(() => {
             req.session.destroy()
-            // res.redirect('http://localhost:3000')
+            
             res.status(200).send('Worked')
 
         }).catch(err => {
@@ -61,14 +61,22 @@ module.exports = {
 
     logout: (req, res) => {
         req.session.destroy();
-        res.redirect("http://localhost:3000")
+        res.redirect(process.env.REACT_APP_REDIRECT)
     },
 
     checkUser: (req,res) => {
         if (req.session.user) {
             res.status(200).send(req.session.user);
           } else {
-            res.status(401).send("Go Log in");
+            res.status(200).send("Please Login");
           }
+    },
+
+    deleteMessages: (req, res) => {
+        const db = req.app.get('db')
+        const {auth_id} = req.session.user
+        db.delete_message([auth_id]).then((message) => {
+            res.status(200).send(message)
+        })
     }
 }

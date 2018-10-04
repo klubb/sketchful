@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Chat from "../Chat/Chat";
 import Canvas from "../Canvas/Canvas";
 import Room from '../Room/Room'
-
+import io from 'socket.io-client'
 
 
 
@@ -15,6 +15,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      joinedRoom: '',
       value: 'Westeros (Global)',
       selectedRoom: false,
       username: "",
@@ -52,10 +53,22 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
+    this.socket = io.connect(process.env.REACT_APP_SERVERADDRESS);
+    
+    
+
+
+    this.socket.on('join', this.userJoined)
+
+    
+
     let res = await axios.get("/api/user-data");
-    this.props.getUserData(res.data);
-   
-   
+  
+    res.data === 'Please Login' ? window.location.href = process.env.REACT_APP_HOME : this.props.getUserData(res.data);
+
+    this.socket.emit("join room", {
+      room: this.state.value
+    });
 
   }
 
@@ -100,6 +113,12 @@ class Dashboard extends Component {
       selectedRoom: !this.state.selectedRoom
       
     })
+    this.socket.emit("join", {
+      user: this.props.user.username,
+      room: this.state.value
+    });
+    
+   
   }
 
  changeState = (val) => {
@@ -116,13 +135,24 @@ class Dashboard extends Component {
    this.props.history.push('/')
  }
 
+ userJoined = (user) => {
+  this.setState({
+    joinedRoom: `${user} joined`
+  })
+  if (this.timeout) clearTimeout(this.timeout);
+this.timeout = setTimeout(() => {
+  this.setState({ joinedRoom: "" });
+}, 4000);
+ }
+
+
   render() {
     console.log(this.state.word);
     console.log(this.state.username);
     let { username, picture /* auth_id*/ } = this.props.user;
     console.log(this.props.user);
-    
-    
+    console.log(this.state.joinedRoom)
+    console.log('value', this.state.value)
 
     if(this.state.selectedRoom) {
     return (
@@ -133,9 +163,11 @@ class Dashboard extends Component {
           <div />
           
           <div className="worddisplay">
+          
             <h4>{this.state.word}</h4>{" "}
           </div>
           <div>
+            
             <button onClick={this.handleRandomWord} className="randombtn">
               Random Word
             </button>
@@ -167,7 +199,7 @@ class Dashboard extends Component {
 
             <h5 className="animated pulse username">{username}</h5>
             <img className="picture animated pulse" src={picture} alt="" />
-            <a href="http://localhost:4444/logout">
+            <a href={process.env.REACT_APP_LOGOUT}>
               <button className="logout">Logout</button>{" "}
               {/* <i className="fas fa-sign-out-alt logouticon"> </i> */}
             </a>
@@ -179,7 +211,7 @@ class Dashboard extends Component {
           <Canvas value={this.state.value} />
           
 
-          <Chat  value={this.state.value} words={this.state.words} word={this.state.word} />
+          <Chat  joined={this.state.joinedRoom} value={this.state.value} words={this.state.words} word={this.state.word} />
         </div>
       </div>
     )} 

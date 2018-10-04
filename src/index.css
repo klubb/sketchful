@@ -6,7 +6,6 @@ body {
   font-family: sans-serif;
   /* overflow-x: hidden; */
   text-decoration: none;
-
 }
 
 textarea:focus, input:focus, select:focus, button:focus{

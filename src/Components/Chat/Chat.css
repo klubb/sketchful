@@ -11,39 +11,50 @@
   
 }
 
+.modal {
+  color: #1F2833;
+  background: #1F2833
+}
 
 
 .message {
   
   border: 0;
-  height: 6%;
-  border-bottom: solid 1px #caebf2;
+  height: 6vh;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.212);
   width: 100%;
   padding-bottom: 4px;
   color: black;
   font-weight: lighter;
   letter-spacing: 2px;
-  font-size: 14px;
-  
-  
-  
-  
+  font-size: 20px;
+  display: flex;
+  line-height: 6vh;
+ 
+}
+.sendicon {
+  float: right;
+  margin-right: 20px;
+        margin-top: -42px;
+        position: relative;
+        z-index: 2;
+        color: lightgray;
 }
 
+.message::placeholder {
+  font-size: 20px;
+ /* text-align: center; */
+ line-height: 6vh
+}
 
-
-.messagebox {
-  background-color: white;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
+.sep {
+  margin: 0;
+  padding: 0;
   
 }
 
 li {
-  /* border: 1px solid black; */
+  
   list-style-type: none;
   margin: 2px 0;
   padding: 10px;
@@ -62,13 +73,15 @@ li {
   clear: both;
   color: #1F2833;
   width: 250px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  margin-top: 8.1px
   
  
   
 }
 .me {
-  background-color: #5ab9ea;
+  background-color: #4ab5ff;
   float: right;
   border-radius: 15px 0 0 15px;
   clear: both;
@@ -76,6 +89,7 @@ li {
   margin: 5.1px 30px;
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 .him.start {
   border-top-left-radius: 10px;  

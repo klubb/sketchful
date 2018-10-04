@@ -1,2 +1,2 @@
 delete from messages 
-where id = $1
+where author_id = $1

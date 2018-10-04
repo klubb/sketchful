@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+
 import { ChromePicker } from "react-color";
 import Tool from "../Tool/Tool";
 import io from "socket.io-client";
 import "./Canvas.css";
+
 // import menu from "./menu.png";
 // import styled from 'styled-components'
 
-const serverAddress = "http://localhost:4444";
+const serverAddress = process.env.REACT_APP_SERVERADDRESS;
 
 class Canvas extends Component {
   constructor(props) {

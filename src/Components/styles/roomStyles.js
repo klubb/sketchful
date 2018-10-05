@@ -116,3 +116,44 @@ export const UserDiv = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const Input = styled.input `
+appearance: none
+      background-color: none
+      border: 1px solid #4ab5ff
+      line-height: 0
+      font-size: 17px
+      width: 100%
+      display: block
+      box-sizing: border-box
+      padding: 10px 15px
+      border-radius: 60px
+      color: #4ab5ff
+      font-weight: 100
+      letter-spacing: 0.01em
+      position: relative
+      z-index: 1
+      
+      &:focus
+        outline: none
+        background: #4ab5ff
+        color: white
+        margin-top: 30px
+        
+      &:valid
+        margin-top: 30px
+          
+      &:focus ~ label
+        @include translate( 0 , -35px )
+      
+      &:valid ~ label
+        text-transform: uppercase
+        font-style: italic
+        @include transform( translate( 5px , -35px ) scale(0.6))
+`
+
+export const ModalContainer = styled.div `
+display: flex;
+flex-direction: column;
+justify-content: center;
+`

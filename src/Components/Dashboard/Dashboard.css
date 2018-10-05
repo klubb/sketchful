@@ -203,9 +203,7 @@ h5 {
 }
 
 .channel {
-  position: absolute;
-  bottom: 82vh;
-  left: 31vw;
+ 
   color: #1F2833;
   font-family: 'Quicksand';
 }

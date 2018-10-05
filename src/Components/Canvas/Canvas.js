@@ -152,6 +152,7 @@ class Canvas extends Component {
     
       return (
         <div>
+          <h4 className="channel">{this.props.value} Room</h4>
           <canvas
             id="display"
             width="930"
@@ -209,7 +210,7 @@ class Canvas extends Component {
             </button>
           </div>
 
-          <h4 className="channel">{this.props.value} Room</h4>
+          
         </div>
       );
   }

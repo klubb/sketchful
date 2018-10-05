@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Room.css";
-import {Container, Button, Info, Background, Header, Menu, Logo, BodyContainer, Description, User, Img, UserDiv, GoBack} from '../styles/roomStyles'
+import {Container, Button, Info, Background, Header, Menu, Logo, BodyContainer, Description, User, Img, UserDiv, GoBack, Input, ModalContainer} from '../styles/roomStyles'
 import io from "socket.io-client";
 import Modal from 'react-responsive-modal'
 
@@ -121,8 +121,10 @@ class Room extends Component {
           </div>
        
         <Modal showCloseIcon={false} open={this.state.open} onClose={this.onCloseModal}>
-        <input onChange={this.handlePassword}placeholder='password' type="text"/>
-        <button onClick={this.handleEnterPrivate}>Enter</button>
+        <ModalContainer>
+        <Input onChange={this.handlePassword}placeholder='password' type="text"/>
+        <Button onClick={this.handleEnterPrivate}>Enter</Button>
+        </ModalContainer>
         </Modal>
           
           <Button onClick={this.handleEnter}> Enter </Button>

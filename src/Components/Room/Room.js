@@ -78,10 +78,10 @@ class Room extends Component {
   render() {
     console.log(this.props.value);
 
-    if (this.props.value === "Snow" && this.props.user.id != 12) {
-      window.location.reload();
-      alert("Access Denied");
-     }
+    // if (this.props.value === "Snow" && this.props.user.id != 12) {
+    //   window.location.reload();
+    //   alert("Access Denied");
+    //  }
 
   
     return (

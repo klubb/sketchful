@@ -14,7 +14,7 @@ class Room extends Component {
       value: this.props.value,
       open: false,
       input: '',
-      password: 'pass'
+      password: process.env.REACT_APP_PASS
     };
 
     this.joinRoom = this.joinRoom.bind(this);

@@ -4,12 +4,17 @@ import { ChromePicker } from "react-color";
 import Tool from "../Tool/Tool";
 import io from "socket.io-client";
 import "./Canvas.css";
-
+import styled from 'styled-components'
 // import menu from "./menu.png";
 // import styled from 'styled-components'
 
 const serverAddress = process.env.REACT_APP_SERVERADDRESS;
 
+const Span = styled.span `
+
+color: #1F2833;
+font-family: 'Quicksand';
+`
 class Canvas extends Component {
   constructor(props) {
     super(props);
@@ -152,7 +157,9 @@ class Canvas extends Component {
     
       return (
         <div>
-          <h4 className="channel">{this.props.value} Room</h4>
+          <div className='channel'>
+          <Span>{this.props.value} Room</Span>
+          </div>
           <canvas
             id="display"
             width="930"

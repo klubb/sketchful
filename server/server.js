@@ -33,19 +33,19 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   if (ENVIRONMENT === "dev") {
-//     req.app
-//       .get("db")
-//       .set_data()
-//       .then(userData => {
-//         req.session.user = userData[0];
-//         next();
-//       });
-//   } else {
-//     next();
-//   }
-// });
+app.use((req, res, next) => {
+  if (ENVIRONMENT === "dev") {
+    req.app
+      .get("db")
+      .set_data()
+      .then(userData => {
+        req.session.user = userData[0];
+        next();
+      });
+  } else {
+    next();
+  }
+});
 
 io.on("connection", socket => {
   console.log("a user connected");

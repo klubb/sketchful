@@ -66,11 +66,12 @@ class Room extends Component {
   }
 
   handleEnterPrivate = () => {
-    if(this.state.input === this.state.password) {
+    if(this.state.input === process.env.REACT_APP_PASS) {
       this.props.handleEnter()
     } else {
       alert('Wrong Password')
     }
+    console.log(this.state.input)
   }
 
 
@@ -82,8 +83,8 @@ class Room extends Component {
     //   window.location.reload();
     //   alert("Access Denied");
     //  }
-
-  
+console.log(process.env.REACT_APP_PASS)
+  console.log(this.state.input)
     return (
       <Background>
         <Header>

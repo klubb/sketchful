@@ -117,9 +117,7 @@ class Dashboard extends Component {
       user: this.props.user.username,
       room: this.state.value
     });
-    
-   
-  }
+ }
 
  changeState = (val) => {
    this.setState({
